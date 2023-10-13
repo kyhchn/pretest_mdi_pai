@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "48933392790",
+    "project_id": "pretest-mdi",
+    "storage_bucket": "pretest-mdi.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:48933392790:android:396499a05e2fd07a04cdb7",
+        "android_client_info": {
+          "package_name": "com.example.pretest_mdi_pai"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWOERWoq29mLdYPNWyP0qE51epWQMvvRo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
