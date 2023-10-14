@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 
 import 'package:get/get.dart';
@@ -10,10 +9,10 @@ import 'package:pretest_mdi_pai/app/widgets/button.dart';
 import 'package:pretest_mdi_pai/app/widgets/form_input.dart';
 import 'package:sizer/sizer.dart';
 
-import '../controllers/auth_controller.dart';
+import '../controllers/register_controller.dart';
 
-class AuthView extends GetView<AuthController> {
-  const AuthView({Key? key}) : super(key: key);
+class RegisterView extends GetView<RegisterController> {
+  const RegisterView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,14 +40,15 @@ class AuthView extends GetView<AuthController> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Selamat Datang',
+                      'Daftar Akun',
                       style: TypographyStyles.h2
                           .copyWith(color: Colors.grey.shade900),
                     ),
                     SizedBox(
                       height: 1.h,
                     ),
-                    Text('Silahkan masukkan email dan password Anda ',
+                    Text(
+                        'Buat akun baru untuk bergabung dan apalah copywritingnya wkwk bersama kami',
                         style: TypographyStyles.b2
                             .copyWith(color: Colors.grey.shade600)),
                   ],
@@ -78,43 +78,25 @@ class AuthView extends GetView<AuthController> {
                 SizedBox(
                   height: 1.5.h,
                 ),
+                FormInput(
+                    validator: FormBuilderValidators.compose([
+                      FormBuilderValidators.required(),
+                      FormBuilderValidators.minLength(8),
+                      FormBuilderValidators.match(Utils.passwordRegex)
+                    ]),
+                    label: 'Konfirmasi Kata Sandi',
+                    hint: '****',
+                    inputType: TextInputType.visiblePassword,
+                    controller: controller.passwordConfirmController),
+                SizedBox(
+                  height: 1.5.h,
+                ),
                 SizedBox(
                     width: double.infinity,
                     child: DefaultButton(
-                      onPressed: controller.login,
+                      onPressed: controller.register,
                       type: Type.primary,
                       child: const Text('Masuk'),
-                    )),
-                SizedBox(
-                  height: 3.h,
-                ),
-                Center(
-                  child: Text(
-                    'Atau',
-                    style: TypographyStyles.b3
-                        .semibold(color: Colors.grey.shade600),
-                  ),
-                ),
-                SizedBox(
-                  height: 3.h,
-                ),
-                SizedBox(
-                    width: double.infinity,
-                    child: DefaultButton(
-                      onPressed: () {},
-                      type: Type.secondary,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          SvgPicture.asset('assets/images/google.svg',
-                              height: 3.h, width: 3.h),
-                          SizedBox(
-                            width: 2.h,
-                          ),
-                          const Text('Masuk dengan Google')
-                        ],
-                      ),
                     )),
                 SizedBox(
                   height: 3.h,
@@ -124,12 +106,12 @@ class AuthView extends GetView<AuthController> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     const Text(
-                      'Belum punya akun? Silahkan',
+                      'Sudah punya akun? Silahkan',
                       style: TypographyStyles.b3,
                     ),
                     TextButton(
-                      onPressed: () => Get.toNamed(Routes.REGISTER),
-                      child: const Text('Daftar'),
+                      onPressed: () => Get.back(),
+                      child: const Text('Masuk'),
                     ),
                   ],
                 )
