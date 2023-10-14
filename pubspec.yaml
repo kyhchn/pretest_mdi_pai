@@ -8,10 +8,13 @@ environment:
 dependencies: 
   cupertino_icons: ^1.0.2
   firebase_core: ^2.17.0
-  get_cli: ^1.8.4
   get: 4.6.6
   firebase_auth: ^4.10.1
   google_sign_in: ^6.1.5
+  google_fonts: ^6.1.0
+  sizer: ^2.0.15
+  flutter_svg: ^2.0.7
+  form_builder_validators: ^9.1.0
   flutter: 
     sdk: flutter
 
@@ -22,4 +25,6 @@ dev_dependencies:
 
 flutter: 
   uses-material-design: true
+  assets:
+    - assets/images/
 
