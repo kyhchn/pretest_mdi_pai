@@ -101,7 +101,7 @@ class AuthView extends GetView<AuthController> {
                 SizedBox(
                     width: double.infinity,
                     child: DefaultButton(
-                      onPressed: () {},
+                      onPressed: controller.googleLogin,
                       type: Type.secondary,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
