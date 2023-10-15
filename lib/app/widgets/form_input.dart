@@ -11,7 +11,7 @@ class FormInput extends StatefulWidget {
   final String? Function(String?)? validator;
   final Widget? suffixIcon;
   final void Function(String)? onFieldSubmitted;
-
+  final bool useDecorationLabel;
   const FormInput(
       {Key? key,
       this.label,
@@ -19,6 +19,7 @@ class FormInput extends StatefulWidget {
       required this.inputType,
       required this.controller,
       this.onFieldSubmitted,
+      this.useDecorationLabel = false,
       this.validator,
       this.readOnly,
       this.suffixIcon})
@@ -44,7 +45,7 @@ class _FormInputState extends State<FormInput> {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        widget.label != null
+        widget.label != null && widget.useDecorationLabel == false
             ? Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -53,10 +54,10 @@ class _FormInputState extends State<FormInput> {
                     widget.label!,
                     style: TypographyStyles.b2.semibold(),
                   ),
+                  SizedBox(height: 1.h),
                 ],
               )
             : const SizedBox(),
-        SizedBox(height: 1.h),
         TextFormField(
           validator: super.widget.validator,
           onFieldSubmitted: widget.onFieldSubmitted,
@@ -68,6 +69,9 @@ class _FormInputState extends State<FormInput> {
               : false,
           style: TypographyStyles.b3.semibold(color: Colors.grey.shade600),
           decoration: InputDecoration(
+            label: widget.useDecorationLabel == true && widget.label != null
+                ? Text(widget.label!)
+                : null,
             hintText: widget.hint,
             suffixIcon: widget.suffixIcon ??
                 (widget.inputType == TextInputType.visiblePassword

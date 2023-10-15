@@ -3,10 +3,7 @@ import 'package:pretest_mdi_pai/app/data/themes/colors.dart';
 import 'package:pretest_mdi_pai/app/data/themes/typography.dart';
 import 'package:sizer/sizer.dart';
 
-enum Type {
-  primary,
-  secondary,
-}
+enum Type { primary, secondary, warning }
 
 class DefaultButton extends StatelessWidget {
   final Widget child;
@@ -27,15 +24,20 @@ class DefaultButton extends StatelessWidget {
                 width: 1,
                 color: type == Type.primary
                     ? CustomColor.primary
-                    : Colors.grey.shade300),
-            backgroundColor:
-                type == Type.primary ? CustomColor.primary : Colors.white,
+                    : type == Type.warning
+                        ? Colors.red
+                        : Colors.grey.shade300),
+            backgroundColor: type == Type.primary
+                ? CustomColor.primary
+                : type == Type.warning
+                    ? Colors.red
+                    : Colors.white,
             elevation: 0,
             textStyle: TypographyStyles.b2.semibold(
                 color:
                     type == Type.primary ? Colors.white : CustomColor.primary),
             foregroundColor:
-                type == Type.primary ? Colors.white : Colors.grey.shade600,
+                type == Type.secondary ? Colors.grey.shade600 : Colors.white,
             padding: EdgeInsets.symmetric(vertical: 1.5.h),
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10))),
