@@ -29,6 +29,10 @@ class AuthController extends GetxController {
     print('called');
     if (user != null) {
       await Get.offAllNamed(Routes.HOME);
+    } else {
+      if (Get.currentRoute != Routes.AUTH) {
+        Get.offAllNamed(Routes.AUTH);
+      }
     }
   }
 
@@ -42,5 +46,9 @@ class AuthController extends GetxController {
 
   void googleLogin() {
     repository.googleSignIn();
+  }
+
+  void logOut() async {
+    await repository.signOut();
   }
 }
