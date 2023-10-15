@@ -2,21 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pretest_mdi_pai/app/data/model/bulk_user.dart';
 import 'package:pretest_mdi_pai/app/data/repository/user_repository.dart';
+import 'package:pretest_mdi_pai/app/routes/app_pages.dart';
 
 class HomeController extends GetxController {
   final repository = UserRepository();
   final isLoading = false.obs;
-  final limit = 0.obs;
+  final limit = TextEditingController();
   final nameEditingController = TextEditingController();
   final RxList<BulkUser> users = <BulkUser>[].obs;
+  final key = GlobalKey<FormState>();
 
   String get name => nameEditingController.text;
-  bool get isAll => limit.value == 0;
-
-  @override
-  void onInit() {
-    super.onInit();
-  }
+  bool get isAll => limit.text == '0' || limit.text.isEmpty;
+  int? get limitInt => int.tryParse(limit.text);
 
   @override
   void onReady() {
@@ -24,20 +22,19 @@ class HomeController extends GetxController {
     fetch();
   }
 
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
   Future<void> fetch() async {
     isLoading(true);
+    if (!key.currentState!.validate()) {
+      isLoading(false);
+      return;
+    }
     if (name.isNotEmpty) {
-      final data = await repository.searchUsers(name, limit: limit.value);
+      final data = await repository.searchUsers(name, limit: limitInt ?? 0);
       if (data != null) {
         users.assignAll(data);
       }
     } else {
-      final data = await repository.getUsers(limit: limit.value);
+      final data = await repository.getUsers(limit: limitInt ?? 0);
       if (data != null) {
         users.assignAll(data);
       }
@@ -45,12 +42,15 @@ class HomeController extends GetxController {
     isLoading(false);
   }
 
-  Future<void> search() async {
-    isLoading(true);
-    final data = await repository.searchUsers(name, limit: limit.value);
-    if (data != null) {
-      users.assignAll(data);
+  void showDetail(int index) {
+    Get.toNamed(Routes.USER_DETAIL, arguments: users[index]);
+  }
+
+  void clear() {
+    if (nameEditingController.text.isNotEmpty || limit.text.isNotEmpty) {
+      nameEditingController.clear();
+      limit.clear();
+      fetch();
     }
-    isLoading(false);
   }
 }
