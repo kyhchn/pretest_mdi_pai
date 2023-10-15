@@ -17,6 +17,7 @@ dependencies:
   dio: ^5.3.3
   form_builder_validators: ^9.1.0
   skeletonizer: ^0.8.0
+  url_launcher: ^6.1.14
   flutter: 
     sdk: flutter
 
