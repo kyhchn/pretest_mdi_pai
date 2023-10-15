@@ -13,6 +13,12 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        backgroundColor:Colors.red,
+        foregroundColor: Colors.white,
+        onPressed: controller.logout,
+        child: const Icon(Icons.logout),
+      ),
       appBar: AppBar(
         title: const Text('Pretest'),
         centerTitle: true,

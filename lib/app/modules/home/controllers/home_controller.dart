@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pretest_mdi_pai/app/data/model/bulk_user.dart';
 import 'package:pretest_mdi_pai/app/data/repository/user_repository.dart';
+import 'package:pretest_mdi_pai/app/modules/auth/controllers/auth_controller.dart';
 import 'package:pretest_mdi_pai/app/routes/app_pages.dart';
 
 class HomeController extends GetxController {
+  final authController = AuthController.i;
   final repository = UserRepository();
   final isLoading = false.obs;
   final limit = TextEditingController();
@@ -40,6 +42,10 @@ class HomeController extends GetxController {
       }
     }
     isLoading(false);
+  }
+
+  void logout() async {
+    authController.logOut();
   }
 
   void showDetail(int index) {
