@@ -9,7 +9,6 @@ class UserProvider {
   final String bulkUserQuery = 'select=firstName,age,image,lastName,email';
   Future<List<BulkUser>?> getUsers(int limit) async {
     try {
-      print('$_baseUrl/&?limit=$limit&$bulkUserQuery');
       final response = await dio.get('$_baseUrl?limit=$limit&$bulkUserQuery');
       if (response.data != null) {
         return (response.data['users'] as List)

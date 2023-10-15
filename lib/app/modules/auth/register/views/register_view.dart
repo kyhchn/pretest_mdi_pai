@@ -4,7 +4,6 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
 import 'package:pretest_mdi_pai/app/data/constants/utils.dart';
 import 'package:pretest_mdi_pai/app/data/themes/typography.dart';
-import 'package:pretest_mdi_pai/app/routes/app_pages.dart';
 import 'package:pretest_mdi_pai/app/widgets/button.dart';
 import 'package:pretest_mdi_pai/app/widgets/form_input.dart';
 import 'package:sizer/sizer.dart';

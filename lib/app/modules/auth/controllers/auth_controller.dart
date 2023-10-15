@@ -18,7 +18,6 @@ class AuthController extends GetxController {
 
   @override
   void onReady() {
-    print('called');
     super.onReady();
     firebaseUser = Rx<User?>(auth.currentUser);
     firebaseUser.bindStream(auth.userChanges());
@@ -26,7 +25,6 @@ class AuthController extends GetxController {
   }
 
   _setInitialScreen(User? user) async {
-    print('called');
     if (user != null) {
       await Get.offAllNamed(Routes.HOME);
     } else {

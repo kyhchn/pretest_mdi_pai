@@ -3,7 +3,6 @@ import 'package:pretest_mdi_pai/app/data/constants/dummy.dart';
 import 'package:pretest_mdi_pai/app/data/model/bulk_user.dart';
 import 'package:pretest_mdi_pai/app/data/model/user.dart';
 import 'package:pretest_mdi_pai/app/data/repository/user_repository.dart';
-import 'package:pretest_mdi_pai/app/modules/auth/controllers/auth_controller.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 enum CoordinateType { personal, company }
