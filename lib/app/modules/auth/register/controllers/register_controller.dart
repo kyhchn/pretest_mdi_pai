@@ -7,12 +7,16 @@ class RegisterController extends GetxController {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final passwordConfirmController = TextEditingController();
+
+  final isLoading = false.obs;
   final key = GlobalKey<FormState>();
 
-  void register() {
+  void register() async {
     if (key.currentState!.validate() &&
         passwordController.text == passwordConfirmController.text) {
-      repository.register(emailController.text, passwordController.text);
+      isLoading(true);
+      await repository.register(emailController.text, passwordController.text);
+      isLoading(false);
     }
   }
 }

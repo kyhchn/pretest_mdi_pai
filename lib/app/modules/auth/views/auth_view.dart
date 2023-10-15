@@ -80,10 +80,20 @@ class AuthView extends GetView<AuthController> {
                 ),
                 SizedBox(
                     width: double.infinity,
-                    child: DefaultButton(
-                      onPressed: controller.login,
-                      type: Type.primary,
-                      child: const Text('Masuk'),
+                    child: Obx(
+                      () => DefaultButton(
+                        onPressed: controller.login,
+                        type: Type.primary,
+                        child: controller.isLoading.value
+                            ? SizedBox(
+                                width: 2.h,
+                                height: 2.h,
+                                child: const CircularProgressIndicator(
+                                  color: Colors.white,
+                                ),
+                              )
+                            : const Text('Masuk'),
+                      ),
                     )),
                 SizedBox(
                   height: 3.h,

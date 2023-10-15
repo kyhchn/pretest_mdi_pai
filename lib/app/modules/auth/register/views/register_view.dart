@@ -92,10 +92,20 @@ class RegisterView extends GetView<RegisterController> {
                 ),
                 SizedBox(
                     width: double.infinity,
-                    child: DefaultButton(
-                      onPressed: controller.register,
-                      type: Type.primary,
-                      child: const Text('Masuk'),
+                    child: Obx(
+                      () => DefaultButton(
+                        onPressed: controller.register,
+                        type: Type.primary,
+                        child: controller.isLoading.value
+                            ? SizedBox(
+                                width: 2.h,
+                                height: 2.h,
+                                child: const CircularProgressIndicator(
+                                  color: Colors.white,
+                                ),
+                              )
+                            : const Text('Daftar'),
+                      ),
                     )),
                 SizedBox(
                   height: 3.h,
